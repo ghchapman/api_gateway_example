@@ -1,0 +1,54 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "UserDetailsService",
+    "description": "Provides user specific information, for example lists."
+  },
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/user/{userId}/favouriteListId": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Content-Type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Content-Type": "'application/json'"
+              },
+              "responseTemplates": {
+                "application/json": "{ 'listId':'mockId' }"
+              }
+            }
+          },
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "mock"
+        }
+      },
+      "definitions": {
+        "Empty": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
